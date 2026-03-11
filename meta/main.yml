@@ -1,5 +1,7 @@
 galaxy_info:
   author: anton-kempf
+  namespace: anton_kempf
+  role_name: vector
   description: Install and configure Vector
   company: personal
   license: MIT

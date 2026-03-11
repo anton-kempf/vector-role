@@ -1,0 +1,46 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+  - name: oraclelinux-8
+    image: oraclelinux:8
+    dockerfile: Dockerfile.j2
+    command: /bin/bash -c "sleep infinity"
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  - name: ubuntu-latest
+    image: ubuntu:latest
+    dockerfile: Dockerfile.j2
+    command: /bin/bash -c "sleep infinity"
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+ansible:
+  cfg:
+    defaults:
+      remote_user: root
+      remote_tmp: /var/tmp
+  env:
+    ANSIBLE_ROLES_PATH: /home/vitor/git
+  playbooks:
+    converge: converge.yml
+    verify: verify.yml
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible

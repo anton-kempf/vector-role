@@ -13,6 +13,13 @@
     mode: "0755"
   check_mode: false
 
+- name: Create vector data directory
+  ansible.builtin.file:
+    path: "{{ vector_data_dir }}"
+    state: directory
+    mode: "0755"
+  check_mode: false
+
 - name: Download vector archive
   ansible.builtin.get_url:
     url: "{{ vector_download_url }}"
@@ -51,10 +58,11 @@
     - Reload systemd
     - Restart vector
   check_mode: false
+  when: vector_manage_service | bool
 
 - name: Enable and start vector
   ansible.builtin.service:
     name: vector
     enabled: true
     state: started
-  when: not ansible_check_mode
+  when: (not ansible_check_mode) and (vector_manage_service | bool)

@@ -2,27 +2,30 @@
 
 Устанавливает и настраивает Vector.
 
-## Что делает
+## Описание
 
-- Создаёт каталоги установки и конфигурации
-- Скачивает и распаковывает архив Vector
-- Создаёт symlink на бинарник
-- Копирует конфиг `vector.toml`
-- Устанавливает systemd‑unit и запускает сервис
+Роль выполняет установку Vector из официального архива, настраивает конфигурационный файл и systemd‑сервис.
 
-## Переменные
+## Требования
 
-### Defaults
+- Ansible >= 2.16
+- Поддерживаемые ОС: Ubuntu 22.04, Debian 11, EL 8
 
-- `vector_version`: версия Vector (по умолчанию `0.37.0`)
-- `vector_install_dir`: каталог установки (по умолчанию `/opt/vector`)
-- `vector_config_dir`: каталог конфига (по умолчанию `/etc/vector`)
-- `vector_archive`: имя архива (по умолчанию `vector-{{ vector_version }}-x86_64-unknown-linux-gnu.tar.gz`)
-- `vector_download_url`: URL архива
-- `vector_extract_dir`: каталог распаковки
-- `vector_symlink_path`: путь к бинарнику (по умолчанию `/usr/bin/vector`)
+## Переменные роли
 
-## Пример использования
+Все переменные задаются в `defaults/main.yml` и могут быть переопределены.
+
+| Переменная | Значение по умолчанию | Описание |
+|---|---|---|
+| `vector_version` | `0.37.0` | Версия Vector |
+| `vector_install_dir` | `/opt/vector` | Каталог установки |
+| `vector_config_dir` | `/etc/vector` | Каталог конфига |
+| `vector_archive` | `vector-{{ vector_version }}-x86_64-unknown-linux-gnu.tar.gz` | Имя архива |
+| `vector_download_url` | `https://packages.timber.io/vector/{{ vector_version }}/{{ vector_archive }}` | URL архива |
+| `vector_extract_dir` | `{{ vector_install_dir }}/vector-{{ vector_version }}-x86_64-unknown-linux-gnu` | Каталог распаковки |
+| `vector_symlink_path` | `/usr/bin/vector` | Путь к бинарнику |
+
+## Использование
 
 ```yaml
 - name: Install Vector

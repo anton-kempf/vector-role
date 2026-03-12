@@ -1,0 +1,246 @@
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=oraclelinux-8)
+changed: [localhost] => (item=ubuntu-latest)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+ok: [localhost] => (item=oraclelinux-8)
+ok: [localhost] => (item=ubuntu-latest)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+
+playbook: /home/vitor/git/vector-role/molecule/default/converge.yml
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Create] ******************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Log into a Docker registry] **********************************************
+skipping: [localhost] => (item=None)
+skipping: [localhost] => (item=None)
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item={'command': '/bin/bash -c "sleep infinity"', 'dockerfile': 'Dockerfile.j2', 'image': 'oraclelinux:8', 'name': 'oraclelinux-8', 'privileged': True, 'tmpfs': ['/run', '/tmp'], 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})
+ok: [localhost] => (item={'command': '/bin/bash -c "sleep infinity"', 'dockerfile': 'Dockerfile.j2', 'image': 'ubuntu:latest', 'name': 'ubuntu-latest', 'privileged': True, 'tmpfs': ['/run', '/tmp'], 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})
+
+TASK [Create Dockerfiles from image names] *************************************
+changed: [localhost] => (item={'command': '/bin/bash -c "sleep infinity"', 'dockerfile': 'Dockerfile.j2', 'image': 'oraclelinux:8', 'name': 'oraclelinux-8', 'privileged': True, 'tmpfs': ['/run', '/tmp'], 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})
+changed: [localhost] => (item={'command': '/bin/bash -c "sleep infinity"', 'dockerfile': 'Dockerfile.j2', 'image': 'ubuntu:latest', 'name': 'ubuntu-latest', 'privileged': True, 'tmpfs': ['/run', '/tmp'], 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})
+
+TASK [Synchronization the context] *********************************************
+changed: [localhost] => (item={'command': '/bin/bash -c "sleep infinity"', 'dockerfile': 'Dockerfile.j2', 'image': 'oraclelinux:8', 'name': 'oraclelinux-8', 'privileged': True, 'tmpfs': ['/run', '/tmp'], 'volumes': ['/sys/fs/cgroup:/sys/fs/cgroup:ro']})
+ok: [localhost] => (item=None)
+changed: [localhost]
+
+TASK [Discover local Docker images] ********************************************
+ok: [localhost] => (item=None)
+ok: [localhost] => (item=None)
+ok: [localhost]
+
+TASK [Build an Ansible compatible image (new)] *********************************
+ok: [localhost] => (item=molecule_local/oraclelinux:8)
+ok: [localhost] => (item=molecule_local/ubuntu:latest)
+
+TASK [Create docker network(s)] ************************************************
+skipping: [localhost]
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item=None)
+ok: [localhost] => (item=None)
+ok: [localhost]
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=oraclelinux-8)
+changed: [localhost] => (item=ubuntu-latest)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).
+changed: [localhost] => (item=None)
+changed: [localhost] => (item=None)
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=9    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+ok: [ubuntu-latest]
+ok: [oraclelinux-8]
+
+TASK [Apply role under test] ***************************************************
+
+TASK [vector-role : Create vector install directory] ***************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Create vector config directory] ****************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Create vector data directory] ******************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Download vector archive] ***********************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Extract vector archive] ************************************
+changed: [ubuntu-latest]
+changed: [oraclelinux-8]
+
+TASK [vector-role : Create symlink to vector binary] ***************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Deploy vector config] **************************************
+changed: [oraclelinux-8]
+changed: [ubuntu-latest]
+
+TASK [vector-role : Deploy systemd service file] *******************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+TASK [vector-role : Enable and start vector] ***********************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+RUNNING HANDLER [vector-role : Restart vector] *********************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+PLAY RECAP *********************************************************************
+oraclelinux-8              : ok=8    changed=7    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
+ubuntu-latest              : ok=8    changed=7    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
+
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+ok: [ubuntu-latest]
+ok: [oraclelinux-8]
+
+TASK [Apply role under test] ***************************************************
+
+TASK [vector-role : Create vector install directory] ***************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Create vector config directory] ****************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Create vector data directory] ******************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Download vector archive] ***********************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Extract vector archive] ************************************
+ok: [ubuntu-latest]
+ok: [oraclelinux-8]
+
+TASK [vector-role : Create symlink to vector binary] ***************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Deploy vector config] **************************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [vector-role : Deploy systemd service file] *******************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+TASK [vector-role : Enable and start vector] ***********************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+PLAY RECAP *********************************************************************
+oraclelinux-8              : ok=8    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+ubuntu-latest              : ok=8    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+
+PLAY [Verify] ******************************************************************
+
+TASK [Check vector binary exists] **********************************************
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [Check vector config exists] **********************************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [Validate vector config] **************************************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [Check vector version] ****************************************************
+ok: [oraclelinux-8]
+ok: [ubuntu-latest]
+
+TASK [Assert vector installation] **********************************************
+ok: [oraclelinux-8] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [ubuntu-latest] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Collect service facts] ***************************************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+TASK [Assert vector installation and service] **********************************
+skipping: [oraclelinux-8]
+skipping: [ubuntu-latest]
+
+PLAY RECAP *********************************************************************
+oraclelinux-8              : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+ubuntu-latest              : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+[WARNING]: Collection community.docker does not support Ansible version 2.16.3
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=oraclelinux-8)
+changed: [localhost] => (item=ubuntu-latest)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=oraclelinux-8)
+changed: [localhost] => (item=ubuntu-latest)
+
+TASK [Delete docker networks(s)] ***********************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+

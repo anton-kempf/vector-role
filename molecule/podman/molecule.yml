@@ -1,0 +1,30 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: podman
+
+platforms:
+  - name: ubuntu-podman
+    image: python:3.11-slim
+    pre_build_image: true
+    command: /bin/sh -c "sleep infinity"
+    privileged: true
+
+ansible:
+  cfg:
+    defaults:
+      remote_user: root
+      remote_tmp: /var/tmp
+  env:
+    ANSIBLE_ROLES_PATH: /home/vitor/git
+  playbooks:
+    converge: converge.yml
+    verify: verify.yml
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible

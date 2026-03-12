@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    vector_manage_service: false
+  tasks:
+    - name: Apply role under test
+      ansible.builtin.include_role:
+        name: vector-role
